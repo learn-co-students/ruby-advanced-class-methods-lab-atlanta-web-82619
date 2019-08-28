@@ -42,17 +42,21 @@ class Song
     self.all.sort_by! {|song| song.name}
   end
 
+  def format_song(filename)
+    song_info = filename.split(/[-.]/)
+    self.artist_name = song_info[0].strip
+    self.name = song_info[1].strip
+  end
+  
   def self.new_from_filename(filename)
     song = self.new
-    song.artist_name = filename.split(' - ')[0] 
-    song.name = filename.split(' - ')[1][0..-5]
+    song.format_song(filename)
     song
   end
 
   def self.create_from_filename(filename)
     song = self.create
-    song.artist_name = filename.split(' - ')[0]
-    song.name = filename.split(' - ')[1][0..-5]
+    song.format_song(filename)
     song
   end
 

@@ -1,6 +1,7 @@
 require 'pry'
 require_relative './lib/song'
 
-p Song.create_by_name("Hello")
+song = Song.create
+song2 = Song.new
 
 binding.pry
